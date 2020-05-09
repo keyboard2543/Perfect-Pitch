@@ -1,4 +1,4 @@
-# Perfect-Pitch
+# Perfect Pitch
 
 ## What does perfect pitch mean?
 It is ability that a person can determine a pitch of sound
