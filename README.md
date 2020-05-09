@@ -10,6 +10,6 @@ It comes to test you how is your perfect pitch ability.
 By randomize a sound, and you determine that note what pitch is it.
 
 ## lib used
-- javaFX see https://openjfx.io/
-- jMusic see https://explodingart.com/jmusic/
-- opencsv see http://opencsv.sourceforge.net/
+- javaFX [see](https://openjfx.io/)
+- jMusic [see](https://explodingart.com/jmusic/)
+- opencsv [see](http://opencsv.sourceforge.net/)
