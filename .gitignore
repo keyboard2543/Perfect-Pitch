@@ -1,0 +1,21 @@
+# This file contains patterns for tmp that you
+# should NOT check in to the git repository.
+*.class
+bin/
+build/
+out/
+.DS[Ss]tore
+# Python tmp
+__pycache__
+*.pyc
+# IDE tmp
+.idea
+*.iml
+*.ctxt
+.classpath
+classpath
+.settings
+.project
+.nbproject
+.vscode
+vscode
