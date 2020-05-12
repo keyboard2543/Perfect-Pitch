@@ -1,4 +1,8 @@
 # Perfect Pitch
+## How to run
+- You need [openJDK](https://openjdk.java.net/) installed in your machine.
+- Just execute PerfectPitch.jar
+- If cannot, right click on PerfectPitch.jar -> open with openJDK Platform binary.
 
 ## What does perfect pitch mean?
 It is ability that a person can determine a pitch of sound
@@ -12,4 +16,3 @@ By randomize a sound, and you determine that note what pitch is it.
 ## lib used
 - javaFX [see](https://openjfx.io/)
 - jMusic [see](https://explodingart.com/jmusic/)
-- opencsv [see](http://opencsv.sourceforge.net/)
