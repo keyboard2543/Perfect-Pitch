@@ -20,8 +20,6 @@ import musicalManager.ScaleStrategy;
  */
 public class PerfectPitch extends Application {
 
-    String userName;
-    String passWord;
     /** Scale for perfect pitch tests. */
     ScaleStrategy scale;
     /** Value of constant phi is 1.61803398874989484820... (aka Golden Ratio) */
@@ -272,17 +270,6 @@ public class PerfectPitch extends Application {
         });
 
         vBox.getChildren().addAll(labelStatistic, labelResult, gridPane, buttonMainMenu);
-
-        return vBox;
-    }
-
-    private VBox dialogGetName() {
-        VBox vBox = new VBox();
-
-        HBox hBoxUserName = new HBox();
-        HBox hBoxPassword = new HBox();
-
-        Label labelSuggestion = new Label("New user can create new by inputting these field.");
 
         return vBox;
     }
