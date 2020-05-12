@@ -118,6 +118,7 @@ public enum PitchManagerEnum {
      * @return accurate by a percentage value
      */
     public double getAccuracy() {
+        if (tested == 0) return 0.0;
         return (double) correct/tested * 100;
     }
 

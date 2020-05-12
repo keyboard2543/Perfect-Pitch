@@ -1,5 +1,5 @@
 # Perfect Pitch
-## How to run
+## To run the program
 - You need [openJDK](https://openjdk.java.net/) installed in your machine.
 - Just execute PerfectPitch.jar
 - If cannot, right click on PerfectPitch.jar -> open with openJDK Platform binary.
@@ -13,6 +13,11 @@ before determining of that sound's pitch.
 It comes to test you how is your perfect pitch ability.
 By randomize a sound, and you determine that note what pitch is it.
 
-## lib used
+## Get lib and dependencies
 - javaFX [see](https://openjfx.io/)
 - jMusic [see](https://explodingart.com/jmusic/)
+- OpenCSV [see (maven repository)](https://mvnrepository.com/artifact/com.opencsv/opencsv/5.1)
+
+## About the program
+- Everything in a datasheet has been encrypted.
+- Would be added more...
