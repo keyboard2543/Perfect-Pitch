@@ -89,6 +89,10 @@ public enum PitchManagerEnum {
         return result;
     }
 
+    /**
+     * Get amount of time that user has correct tested every pitch.
+     * @return amount of time that user has correct tested every pitch
+     */
     public static int getAllCorrect() {
         int result = 0;
         for (PitchManagerEnum pitch : PitchManagerEnum.values())
@@ -154,6 +158,11 @@ public enum PitchManagerEnum {
             pitch.reset();
     }
 
+    /**
+     * Find and Return pitch by a note.
+     * @param note is the note to find for pitch
+     * @return pitch of the note
+     */
     public static PitchManagerEnum getPitchByNote(Note note) {
         for (PitchManagerEnum pitch : PitchManagerEnum.values()) {
             if (note.getName().equals(pitch.getPitchName()))

@@ -1,5 +1,6 @@
 /**
  * Main class to be run as main.
+ * @author Sahatsawat Kanpai
  */
 public class Main {
     /**

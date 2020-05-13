@@ -7,6 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * CScale ScaleStrategy is a scale references white keys on piano.
+ * @author Sahatsawat Kanpai
+ */
 public class CScale implements ScaleStrategy {
 
     /**

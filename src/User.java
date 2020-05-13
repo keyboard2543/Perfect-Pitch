@@ -1,7 +1,3 @@
-import crypter.Crypter;
-import crypter.Decrypter;
-import crypter.Encrypter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +7,15 @@ import java.util.List;
  */
 public class User {
 
-    private static final int KEY = 47;
     private static List<User> users = new ArrayList<>();
 
     /** A userName attribute. */
     private String username;
     /** A passWord attribute. */
     private String password;
+    /** A tested attribute. */
     private int tested;
+    /** A correct attribute */
     private int correct;
 
     /**

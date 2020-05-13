@@ -6,7 +6,6 @@ import crypter.Decrypter;
 import crypter.Encrypter;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,9 +21,9 @@ import jm.util.Play;
 import musicalManager.PitchManagerEnum;
 import musicalManager.Scale;
 import musicalManager.ScaleStrategy;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class PerfectPitch extends Application {
     /** User to be used to manage the data. */
     static User user;
     /** Key for Crypter. */
-    static final int KEY = 47;
+    static final int KEY = 1;
     /** Scale for perfect pitch tests. */
     static ScaleStrategy scale;
     /** Value of constant phi is 1.61803398874989484820... (aka Golden Ratio) */
@@ -93,6 +92,10 @@ public class PerfectPitch extends Application {
         return menuBar;
     }
 
+    /**
+     * Return loginRoot.
+     * @return Root of login page
+     */
     public VBox loginRoot() {
         VBox vBoxMinor = new VBox();
         vBoxMinor.setPadding(new Insets(32.0*HEIGHT_MAGNITUDE));
@@ -152,6 +155,10 @@ public class PerfectPitch extends Application {
         return vBoxMajor;
     }
 
+    /**
+     * Return root for password changing.
+     * @return root for password changing
+     */
     public VBox passwordChangeRoot() {
         VBox vBoxMinor = new VBox();
         vBoxMinor.setPadding(new Insets(32.0*HEIGHT_MAGNITUDE));
@@ -266,6 +273,10 @@ public class PerfectPitch extends Application {
         return vBox;
     }
 
+    /**
+     * Return statisticsRoot.
+     * @return root for Statistics
+     */
     private VBox statisticsRoot() {
         VBox vBoxMinor = new VBox();
         vBoxMinor.setSpacing(10.0*HEIGHT_MAGNITUDE);
@@ -289,40 +300,36 @@ public class PerfectPitch extends Application {
         return vBoxMajor;
     }
 
-    private TableView<UserForObserve> userTableView() {
+    /**
+     * Return TableView of statistics.
+     * @return TableView of statistics
+     */
+    private TableView<User> userTableView() {
         // Username column
-        TableColumn<UserForObserve, String> usernameColumn = new TableColumn<>("Username");
+        TableColumn<User, String> usernameColumn = new TableColumn<>("Username");
         usernameColumn.setPrefWidth(256.0*HEIGHT_MAGNITUDE);
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         // Tested column
-        TableColumn<UserForObserve, Integer> testedColumn = new TableColumn<>("Tested");
+        TableColumn<User, Integer> testedColumn = new TableColumn<>("Tested");
         testedColumn.setPrefWidth(128.0*HEIGHT_MAGNITUDE);
         testedColumn.setCellValueFactory(new PropertyValueFactory<>("tested"));
 
         // Correct column
-        TableColumn<UserForObserve, Integer> correctColumn = new TableColumn<>("Correct");
+        TableColumn<User, Integer> correctColumn = new TableColumn<>("Correct");
         correctColumn.setPrefWidth(128.0*HEIGHT_MAGNITUDE);
         correctColumn.setCellValueFactory(new PropertyValueFactory<>("correct"));
 
         // Accuracy column
-        TableColumn<UserForObserve, Double> accuracyColumn = new TableColumn<>("Accuracy (Percentage)");
+        TableColumn<User, Double> accuracyColumn = new TableColumn<>("Accuracy (Percentage)");
         accuracyColumn.setPrefWidth(128.0*HEIGHT_MAGNITUDE);
         accuracyColumn.setCellValueFactory(new PropertyValueFactory<>("accuracy"));
 
-        TableView<UserForObserve> table = new TableView<>();
-        table.setItems(getObservableUser());
+        TableView<User> table = new TableView<>();
+        table.setItems(FXCollections.observableArrayList(User.getUsers()));
         table.getColumns().addAll(usernameColumn, testedColumn, correctColumn, accuracyColumn);
 
         return table;
-    }
-
-    private ObservableList<UserForObserve> getObservableUser() {
-        ObservableList<UserForObserve> users = FXCollections.observableArrayList();
-        for (User user : User.getUsers()) {
-            users.add(new UserForObserve(user.getUsername(), user.getTested(), user.getCorrect(), user.getAccuracy()));
-        }
-        return users;
     }
 
     private VBox scaleChoosingRoot() {
@@ -530,17 +537,19 @@ public class PerfectPitch extends Application {
      * Read a datasheet csv file and return Users.
      * @return ArrayList of Users
      */
-    private List<User> readAndReturnInitUsers() {
+    public List<User> readAndReturnInitUsers() {
         List<User> usersInitList = new ArrayList<>();
         List<String[]> rowList = new ArrayList<>();
         try {
-            CSVReader reader = new CSVReader(new FileReader("src/data/datasheet.csv"));
+            File file = new File("datasheet.csv");
+            if (!file.exists())
+                file.createNewFile();
+            CSVReader reader = new CSVReader(new FileReader(file));
             reader.readNext(); // skip header column
             rowList = reader.readAll(); // then get remaining column
             reader.close();
         } catch (IOException | CsvException e) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, "datasheet.csv not found, " +
-                    "and will be created", ButtonType.OK);
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION, "datasheet.csv cannot be processed", ButtonType.OK);
             dialog.show();
         }
 
@@ -558,11 +567,12 @@ public class PerfectPitch extends Application {
     /**
      * Write data of Users in a datasheet csv file.
      */
-    private void writeUsersData() {
+    public void writeUsersData() {
         Crypter encrypter = new Encrypter();
         String[] headerColumn = {"username", "password", "tested", "correct"};
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("src/data/datasheet.csv"));
+            File file = new File("datasheet.csv");
+            CSVWriter writer = new CSVWriter(new FileWriter(file));
             writer.writeNext(headerColumn);
             for (User user : User.getUsers()) {
                 String encryptedUsername = encrypter.unicode(user.getUsername(), KEY);
@@ -578,34 +588,4 @@ public class PerfectPitch extends Application {
         }
     }
 
-
-    public static class UserForObserve {
-        private final String username;
-        private final double accuracy;
-        private final int correct;
-        private final int tested;
-
-        public UserForObserve(String username, int tested, int correct, double accuracy) {
-            this.username = username;
-            this.tested = tested;
-            this.correct = correct;
-            this.accuracy = accuracy;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public int getTested() {
-            return tested;
-        }
-
-        public int getCorrect() {
-            return correct;
-        }
-
-        public double getAccuracy() {
-            return accuracy;
-        }
-    }
 }

@@ -4,6 +4,10 @@ import jm.music.data.Note;
 
 import java.util.*;
 
+/**
+ * BlankKeys ScaleStrategy that in scale has only black keys pitch references on piano.
+ * @author Sahatsawat Kanpai
+ */
 public class BlackKeys implements ScaleStrategy {
     /**
      * Get new randomized note by the scale.

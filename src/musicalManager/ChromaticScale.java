@@ -4,6 +4,10 @@ import jm.music.data.Note;
 
 import java.util.Random;
 
+/**
+ * ChromaticScale ScaleStrategy is scale that references on every musical pitch.
+ * @author Sahatsawat Kanpai
+ */
 public class ChromaticScale implements ScaleStrategy {
 
     /**

@@ -1,8 +1,9 @@
 # Perfect Pitch
-## To run the program
-- You need [openJDK](https://openjdk.java.net/) installed in your machine.
-- Just execute PerfectPitch.jar
-- If cannot, right click on PerfectPitch.jar -> open with openJDK Platform binary.
+## To use the program
+- [Download zip](https://drive.google.com/drive/folders/15jgOZ2-KURrI8wx33HGEJ0TneZoDrouQ?usp=sharing).
+- Extract that zip file.
+- Run PerfectPitch.sh
+- Enjoy!
 
 ## What does perfect pitch mean?
 It is ability that a person can determine a pitch of sound
@@ -19,5 +20,7 @@ By randomize a sound, and you determine that note what pitch is it.
 - OpenCSV [see (maven repository)](https://mvnrepository.com/artifact/com.opencsv/opencsv/5.1)
 
 ## About the program
-- Everything in a datasheet has been encrypted.
-- Would be added more...
+- Username and Password in a datasheet have been encrypted.
+
+## UMLDiagram
+![UMLFull](https://github.com/keyboard2543/Perfect-Pitch/blob/master/img/PerfectPitchUMLDiagram.jpg)

@@ -1,6 +1,5 @@
 package crypter;
 
-import java.nio.MappedByteBuffer;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -30,20 +29,12 @@ public class Encrypter implements Crypter {
             char c = s.charAt(i);
 
             if (lowerCase.contains(c)) {
-                int newIndex = lowerCase.indexOf(c) + key;
-                if (newIndex > 25)
-                    newIndex -= 26;
-                else if (newIndex < 0)
-                    newIndex += 26;
+                int newIndex = Math.abs(lowerCase.indexOf(c) + key) % 26;
                 sb.append(lowerCase.get(newIndex));
             }
 
             else if (upperCase.contains(c)) {
-                int newIndex = upperCase.indexOf(c) + key;
-                if (newIndex > 25)
-                    newIndex -= 26;
-                else if (newIndex < 0)
-                    newIndex += 26;
+                int newIndex = Math.abs(upperCase.indexOf(c) + key) % 26;
                 sb.append(upperCase.get(newIndex));
             }
 
