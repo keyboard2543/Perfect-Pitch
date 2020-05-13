@@ -23,4 +23,4 @@ By randomize a sound, and you determine that note what pitch is it.
 - Username and Password in a datasheet have been encrypted.
 
 ## UMLDiagram
-![UMLFull](https://github.com/keyboard2543/Perfect-Pitch/blob/master/img/PerfectPitchUMLDiagram.jpg)
+![UMLFull](https://github.com/keyboard2543/Perfect-Pitch/blob/master/src/img/PerfectPitchUMLDiagram.jpg)
